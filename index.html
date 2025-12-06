@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anakan Group — Database perusahaan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#F6F8FB;
+      --card:#FFFFFF;
+      --muted:#6B7280;
+      --accent:#4F46E5;
+      --glass: rgba(255,255,255,0.6);
+      --radius:14px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#ffffff);color:#0f172a}
+    .container{max-width:1100px;margin:36px auto;padding:28px}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    header h1{font-size:20px;margin:0}
+    header p{color:var(--muted);margin:0;font-size:13px}
+
+    /* Grid of 4 sections */
+    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:18px}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+    .card{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 8px 20px rgba(2,6,23,0.06);border:1px solid rgba(15,23,42,0.04)}
+    .card h2{margin:0 0 8px 0;font-size:16px}
+    .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px}
+
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    thead tr{background:linear-gradient(90deg, rgba(79,70,229,0.08), rgba(79,70,229,0.02));}
+    th,td{padding:10px 12px;text-align:left;border-bottom:1px solid rgba(15,23,42,0.04);font-size:14px}
+    th{font-weight:600;color:#111827}
+    tbody tr:hover{background:linear-gradient(90deg, rgba(79,70,229,0.03), rgba(79,70,229,0.01))}
+
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;border:none;background:var(--accent);color:white;font-weight:600;cursor:pointer;box-shadow:0 6px 16px rgba(79,70,229,0.18)}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(79,70,229,0.12);box-shadow:none}
+
+    .top-cards{display:flex;gap:12px;margin-bottom:10px}
+    .kpi{flex:1;background:linear-gradient(180deg,#ffffff,var(--glass));padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04);border:1px solid rgba(15,23,42,0.03)}
+    .kpi p{margin:0;color:var(--muted);font-size:12px}
+    .kpi h3{margin:6px 0 0 0;font-size:18px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Anakan Group</h1>
+        <p>Panel manajemen database</p>
+      </div>
+      <div class="meta">
+        <div style="text-align:right">
+          <div style="font-weight:700">Anakan Group</div>
+          <div style="font-size:12px;color:var(--muted)">Copyright 2025</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- KPI area full width -->
+    <div class="top-cards">
+      <div class="kpi card">
+        <p>Total Karyawan</p>
+        <h3 id="kpi-employees">08</h3>
+      </div>
+      <div class="kpi card">
+        <p>Proyek Aktif</p>
+        <h3 id="kpi-projects">04</h3>
+      </div>
+      <div class="kpi card">
+        <p>-</p>
+        <h3 id="kpi-revenue">-</h3>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Section 1: Data Karyawan -->
+      <section class="card" id="section-employees">
+        <h2>1. Data Karyawan aktif</h2>
+        <div class="meta">Tabel berisi daftar Karyawan yang sedang aktif bertugas</div>
+        <div class="controls">
+          <button class="btn" onclick="exportTableToCSV('karyawan.csv', 'table-employees')">Export Bagian Ini (CSV)</button>
+        </div>
+
+        <table id="table-employees">
+          <thead>
+            <tr><th>ID</th><th>Nama</th><th>Posisi</th><th>Divisi</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>EMP-001</td><td>Satria Hugiutomo</td><td>Pelaksana</td><td>ipal Ciptomulyo</td><td>Aktif</td></tr>
+            <tr><td>EMP-002</td><td>Bintang</td><td>Pelaksana</td><td>SDN Pandanwangi 5</td><td>Aktif</td></tr>
+            <tr><td>EMP-003</td><td>Febrian Syahrul</td><td>Pelaksana</td><td>Balai RW pisang candi</td><td>Aktif</td></tr>
+            <tr><td>EMP-004</td><td>Challan</td><td>Bendahara</td><td>Keuangan</td><td>Aktif</td></tr>
+            <tr><td>EMP-005</td><td>Valent</td><td>Admin</td><td>Administrasi</td><td>Aktif</td></tr>
+            <tr><td>EMP-006</td><td>Fardi Ramadan</td><td>Admin</td><td>Administrasi</td><td>Aktif</td></tr>
+            <tr><td>EMP-007</td><td>Muhammad abil</td><td>Supervisor</td><td>Head manager</td><td>Aktif</td></tr>
+            <tr><td>EMP-008</td><td>Ega Mochamad</td><td>Supervisor</td><td>Forwarder</td><td>Aktif</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 2: Data Keuangan -->
+      <section class="card" id="section-finance">
+        <h2>2. Progress Proyek</h2>
+        <div class="meta">Persentase Pengerjaan Proyek</div>
+        <div class="controls">
+          <button class="btn" onclick="exportTableToCSV('keuangan.csv','table-finance')">Export Bagian Ini (CSV)</button>
+        </div>
+
+        <table id="table-finance">
+          <thead>
+            <tr><th>Id Proyek</th><th>Nama Pekerjaan</th><th>Persentase</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>65%</td><td></td></tr>
+            <tr><td>KNT-002</td><td>SDN Pandanwangi 5</td><td>70%</td><td></td></tr>
+            <tr><td>KNT-003</td><td>Balai RW Pisang Candi</td><td>90%</td><td></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 3: Data Proyek -->
+      <section class="card" id="section-projects">
+        <h2>3. Data Proyek</h2>
+        <div class="meta">Status Proyek Sedang Berjalan</div>
+        <div class="controls">
+          <button class="btn" onclick="exportTableToCSV('proyek.csv','table-projects')">Export Bagian Ini (CSV)</button>
+        </div>
+
+        <table id="table-projects">
+          <thead>
+            <tr><th>ID Proyek</th><th>Nama Proyek</th><th>Pelaksana</th><th>Tenggat kontrak</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>Satria Hugiutomo</td><td>07 Desember 2025</td></tr>
+            <tr><td>KNT-002</td><td>SDN Pandanwangi 5</td><td>Bintang Karima</td><td>00 desember 2025</td></tr>
+            <tr><td>KNT-003</td><td>Balai RW Pisang Candi</td><td>Febrian Syahrul</td><td>00 desember 2025</td></tr>
+            <tr><td>KNT-004</td><td>Pos Polisi</td><td>Anton</td><td>00 desember 2025</td></tr>
+            <tr><td>PGDN-005</td><td>SMKN Muhammadiyah</td><td>Ega</td><td>00 desember 2025</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 4: SKK Gedung -->
+      <section class="card" id="section-logs">
+        <h2>4. SKK Gedung Terpakai</h2>
+        <div class="meta">Riwayat Pemakaian SKK </div>
+
+        <div class="controls">
+          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
+        </div>
+
+        <table id="table-skk">
+          <thead>
+            <tr><th>Nama SKK</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Muhammad Abil</td><td>jenjang 3</td><td>0 tahun</td><td>-</td></tr>
+            <tr><td>Ahmad Khufada</td><td>Jenjang 4</td><td>2 tahun</td><td> Balai RW Kebonsari</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+        <!-- Section 5: SKK Air -->
+      <section class="card" id="section-logs">
+        <h2>5. SKK Air Terpakai</h2>
+        <div class="meta">Riwayat Pemakaian SKK </div>
+
+        <div class="controls">
+          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
+        </div>
+
+        <table id="table-skk">
+          <thead>
+            <tr><th>Nama SKK</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alda Risma</td><td>jenjang 4</td><td>0 tahun</td><td>Ipal Ciptomulyo</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+       <!-- Section 6: SKK K3 -->
+      <section class="card" id="section-logs">
+        <h2>6. SKK K3 Terpakai</h2>
+        <div class="meta">Riwayat Pemakaian SKK </div>
+
+        <div class="controls">
+          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
+        </div>
+
+        <table id="table-skk">
+          <thead>
+            <tr><th>Nama SKK</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ega Mochamad</td><td>jenjang </td><td> tahun</td><td>-</td></tr>
+            <tr><td>Rudi Kurnianto</td><td>Supervisor</td><td>0 Tahun</td><td>Ipal Ciptomulyo</td></tr>
+            <tr><td>I Made Maha</td><td>Jenjang 3</td><td>-0 tahun</td><td>Balai RW Kebonsari</td></tr>
+            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section 7: Proses pembayaran -->
+      <section class="card" id="section-logs">
+        <h2>7. Proyek Proses Pencairan</h2>
+        <div class="meta">Dalam Proses Pencairan </div>
+        <div class="controls">
+          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
+        </div>
+
+        <table id="table-skk">
+          <thead>
+            <tr><th>Nama Proyek</th><th>Proses</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Aspal Matos</td><td>Pencairan</td></tr>
+            <tr><td>Drainase Sumpil</td><td>Pencairan</td>></tr>
+            <tr><td>Balai RW pisang candi</td><td>-</td></tr>
+            <tr><td>Ipal Ciptomulyo</td><td>-</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+
+    <footer>
+      Tip: Pelaksana wajib melapokan rekapan dan proggres proyek terhadap admin dan bendahara.
+    </footer>
+  </div>
+
+  <script>
+    // Utility: write log
+    function writeLog(text){
+      const el = document.getElementById('log');
+      const time = new Date().toLocaleString();
+      el.innerHTML = `<div>\n<strong>[${time}]</strong> ${text}</div>` + el.innerHTML;
+    }
+
+    // Convert table DOM to CSV string
+    function tableToCSV(table){
+      const rows = Array.from(table.querySelectorAll('tr'));
+      return rows.map(r => {
+        const cells = Array.from(r.querySelectorAll('th,td'));
+        return cells.map(c => '"' + c.innerText.replace(/"/g,'""') + '"').join(',');
+      }).join('\n');
+    }
+
+    // Download helper
+    function downloadCSV(filename, csv){
+      const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      writeLog('Diunduh: ' + filename);
+    }
+
+    // Export single table by id
+    function exportTableToCSV(filename, tableId){
+      const table = document.getElementById(tableId);
+      if(!table){alert('Table tidak ditemukan');return}
+      const csv = tableToCSV(table);
+      downloadCSV(filename, csv);
+    }
+
+    // Export all sections into one CSV file with separators
+    function exportAllSections(){
+      const parts = [];
+      const sections = [
+        {title:'Data Karyawan', id:'table-employees'},
+        {title:'Data Keuangan', id:'table-finance'},
+        {title:'Data Proyek', id:'table-projects'}
+      ];
+      sections.forEach(s => {
+        const table = document.getElementById(s.id);
+        if(table){
+          parts.push('"' + s.title + '"');
+          parts.push(tableToCSV(table));
+          parts.push('\n');
+        }
+      });
+      const combined = parts.join('\n');
+      const filename = 'sistem_perusahaan_all_sections_' + new Date().toISOString().slice(0,10) + '.csv';
+      downloadCSV(filename, combined);
+    }
+
+    // Small helpers to append demo rows
+    function addDummyEmployee(){
+      const tb = document.querySelector('#table-employees tbody');
+      const id = 'EMP-' + String(Math.floor(Math.random()*900)+100);
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${id}</td><td>Nama Contoh</td><td>Staff</td><td>Ops</td><td>Aktif</td>`;
+      tb.appendChild(row);
+      writeLog('Menambahkan baris ke Data Karyawan: ' + id);
+      updateKPIs();
+    }
+    function addDummyFinance(){
+      const tb = document.querySelector('#table-finance tbody');
+      const date = new Date().toISOString().slice(0,10);
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${date}</td><td>Pendapatan Contoh</td><td>Pendapatan</td><td>1000000</td>`;
+      tb.appendChild(row);
+      writeLog('Menambahkan baris ke Data Keuangan');
+    }
+    function addDummyProject(){
+      const tb = document.querySelector('#table-projects tbody');
+      const id = 'PRJ-' + String(Math.floor(Math.random()*900)+100);
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${id}</td><td>Proyek Contoh</td><td>Ridwan</td><td>Berjalan</td>`;
+      tb.appendChild(row);
+      writeLog('Menambahkan baris ke Data Proyek: ' + id);
+      updateKPIs();
+    }
+
+    function clearLogs(){
+      document.getElementById('log').innerHTML = '';
+      writeLog('Log dibersihkan');
+    }
+
+    // Update KPI counts from DOM
+    function updateKPIs(){
+      const empCount = document.querySelectorAll('#table-employees tbody tr').length;
+      const projCount = document.querySelectorAll('#table-projects tbody tr').length;
+      document.getElementById('kpi-employees').innerText = empCount;
+      document.getElementById('kpi-projects').innerText = projCount;
+    }
+
+    // Init
+    updateKPIs();
+    writeLog('Aplikasi siap');
+  </script>
+</body>
+</html>
