@@ -94,6 +94,7 @@
       background:rgba(255,255,255,0.15);
       border-radius:8px;
     }
+    
 
     .container{max-width:1300px;margin:4px auto;padding:28px}
     header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
@@ -155,55 +156,30 @@
   </div>
   <!-- Section 4: SKK Gedung -->
       <section class="card" id="section-logs">
-        <h2>4. SKK Gedung Terpakai</h2>
-        <div class="meta">Riwayat Pemakaian SKK </div>
+        <h2>SKK Inventaris</h2>
+        <div class="meta">List SKK Inventaris anakan Group </div>
 
         <div class="controls">
-          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
         </div>
 
         <table id="table-skk">
           <thead>
-            <tr><th>Nama SKK</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
+            <tr><th>Nama SKK</th><th>Divisi</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
           </thead>
           <tbody>
-            <tr><td>Muhammad Abil</td><td>jenjang 3</td><td>0 tahun</td><td>-</td></tr>
-            <tr><td>Ahmad Khufada</td><td>Jenjang 4</td><td>2 tahun</td><td> Balai RW Kebonsari</td></tr>
-            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-       <!-- Section 5: SKK Air -->
-      <section class="card" id="section-logs">
-        <h2>5. SKK Air Terpakai</h2>
-        <div class="meta">Riwayat Pemakaian SKK </div>
-
-        <div class="controls">
-          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
-        </div>
-
-        <table id="table-skk">
-          <thead>
-            <tr><th>Nama SKK</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Alda Risma</td><td>jenjang 4</td><td>0 tahun</td><td>Ipal Ciptomulyo</td></tr>
-            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
-            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>Muhammad Abil</td><td>Gedung</td><td>jenjang 3</td><td>0 tahun</td><td>-</td></tr>
+            <tr><td>Ahmad Khufada</td><td>Gedung</td><td>Jenjang 4</td><td>2 tahun</td><td> Balai RW Kebonsari</td></tr> 
+             <tr><td>Alda Risma</td><td>Air Limbah</td><td>Jenjang 4</td><td>0 tahun</td><td> Ipal Ciptomulyo</td></tr>
           </tbody>
         </table>
       </section>
 
       <!-- Section 6: SKK K3 -->
       <section class="card" id="section-logs">
-        <h2>6. SKK K3 Terpakai</h2>
-        <div class="meta">Riwayat Pemakaian SKK </div>
+        <h2>SKK K3 Inventaris</h2>
+        <div class="meta">List SKK K3 Inventaris</div>
 
         <div class="controls">
-          <button class="btn" onclick="exportAllSections()">Export Semua (gabungan CSV)</button>
         </div>
 
         <table id="table-skk">
