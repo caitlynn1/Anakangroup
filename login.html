@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #1f2937, #111827);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-box {
+      background: #ffffff;
+      padding: 30px;
+      width: 320px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      text-align: center;
+    }
+    .login-box h2 {
+      margin-bottom: 20px;
+      color: #111827;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 7px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .login-box button:hover {
+      background: #1d4ed8;
+    }
+    .error {
+      color: #dc2626;
+      font-size: 13px;
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>Anakan Group System</h2>
+    <input type="password" id="password" placeholder="Masukkan Password" />
+    <button onclick="login()">Login</button>
+    <div id="error" class="error">Salah lur</div>
+  </div>
+
+  <script>
+    const PASSWORD_BENAR = "dkross87"; // Ganti password di sini
+
+    function login() {
+      const inputPassword = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      if (inputPassword === PASSWORD_BENAR) {
+        localStorage.setItem("isLogin", "true");
+        window.location.href = "index.html"; // halaman tujuan
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    // Redirect otomatis jika sudah login
+    if (localStorage.getItem("isLogin") === "true") {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>

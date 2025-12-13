@@ -11,6 +11,7 @@
       background:#F4F6FA;
       color:#1A1A1A;
     }
+    
 
     /* HEADER */
     header{
@@ -184,6 +185,16 @@
 </head>
 <body>
 
+  <script>
+  if (localStorage.getItem("isLogin") !== "true") {
+    window.location.href = "login.html";
+  }
+  function logout(){
+  localStorage.removeItem("isLogin");
+  window.location.href = "login.html";
+}
+</script>
+
   <!-- MENU BAR HEADER -->
   <div class="navbar" id="navbar">
     <div class="menu-toggle" onclick="toggleMenu()">
@@ -202,6 +213,7 @@
       <li><a href="Pencairan.html">Pencairan</a></li>
       <li><a href="Pelaksana.html">Jadwal</a></li>
       <li><a href="https://docs.google.com/spreadsheets/d/1bfDV2NHId8dza2w4dyxWSfhEd9ZsFLifm9iDlDDX_r8/edit?usp=sharing" target="_blank">Rekap Pelaksana</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
   </div>
 
@@ -271,6 +283,7 @@
 
 
 <script>
+  
 // Load notes on start
 document.addEventListener("DOMContentLoaded", loadNotes);
 
@@ -425,6 +438,7 @@ menu.classList.toggle('active');
     // Init
     updateKPIs();
     writeLog('Aplikasi siap');
+  
     
   </script>
 </body>
