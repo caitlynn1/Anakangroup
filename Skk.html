@@ -128,6 +128,35 @@
   localStorage.removeItem("isLogin");
   window.location.href = "login.html";
 }
+const SESSION_DURATION = 15 * 60 * 1000; // 15 menit
+
+function checkSession() {
+  const isLogin = localStorage.getItem("isLogin");
+  const loginTime = localStorage.getItem("loginTime");
+
+  if (!isLogin || !loginTime) {
+    logout();
+    return;
+  }
+
+  const now = Date.now();
+  if (now - loginTime > SESSION_DURATION) {
+    alert("Sesi login Anda telah berakhir");
+    logout();
+  }
+}
+
+function logout() {
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("loginTime");
+  window.location.href = "login.html";
+}
+
+// cek tiap 10 detik
+setInterval(checkSession, 10000);
+
+// cek saat halaman dibuka
+checkSession();
 </script>
   <!-- MENU BAR HEADER -->
   <div class="navbar" id="navbar">
@@ -177,14 +206,34 @@
             <tr><th>Nama SKK</th><th>Divisi</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
           </thead>
           <tbody>
-            <tr><td>Muhammad Abil</td><td>Gedung</td><td>jenjang 3</td><td>0 tahun</td><td>-</td></tr>
-            <tr><td>Ahmad Khufada</td><td>Gedung</td><td>Jenjang 4</td><td>2 tahun</td><td> Balai RW Kebonsari</td></tr> 
-             <tr><td>Alda Risma</td><td>Air Limbah</td><td>Jenjang 4</td><td>0 tahun</td><td> Ipal Ciptomulyo</td></tr>
+            <tr class="row-abil">
+              <td>Muhammad Abil</td>
+              <td>Gedung</td>
+              <td>jenjang 3</td>
+              <td>0 tahun</td>
+              <td>-</td>
+            </tr>
+            <tr class="row-ahmad">
+              <td>Ahmad Khufada</td>
+              <td>Gedung</td>
+              <td>Jenjang 4</td>
+              <td>2 tahun</td>
+              <td> Balai RW Kebonsari</td>
+            </tr> 
+             <tr class="row-alda">
+              <td>Alda Risma</td>
+              <td>Air Limbah</td>
+              <td>Jenjang 4</td>
+              <td>0 tahun</td>
+              <td> Ipal Ciptomulyo</td>
+            </tr>
+
           </tbody>
         </table>
       </section>
 
-      <!-- Section 6: SKK K3 -->
+  
+  <!-- Section 6: SKK K3 -->
       <section class="card" id="section-logs">
         <h2>SKK K3 Inventaris</h2>
         <div class="meta">List SKK K3 Inventaris</div>
@@ -197,10 +246,25 @@
             <tr><th>Nama SKK</th><th>Jenjang</th><th>Pengalaman</th><th>Proyek</th></tr>
           </thead>
           <tbody>
-            <tr><td>Ega Mochamad</td><td>jenjang </td><td> tahun</td><td>-</td></tr>
-            <tr><td>Rudi Kurnianto</td><td>Supervisor</td><td>0 Tahun</td><td>Ipal Ciptomulyo</td></tr>
-            <tr><td>I Made Maha</td><td>Jenjang 3</td><td>0 tahun</td><td>Balai RW Kebonsari</td></tr>
-            <tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr class="row-ega">
+              <td>Ega Mochamad</td>
+              <td>jenjang </td>
+              <td> tahun</td>
+              <td>-</td>
+            </tr>
+            <tr class="row-rudi">
+              <td>Rudi Kurnianto</td>
+              <td>Supervisor</td>
+              <td>0 Tahun</td>
+              <td>Ipal Ciptomulyo</td>
+            </tr>
+            <tr class="row-made">
+              <td>I Made Maha</td>
+              <td>Jenjang 3</td>
+              <td>0 tahun</td>
+              <td>Balai RW Kebonsari</td>
+            </tr>
+
           </tbody>
         </table>
         <script>
@@ -211,4 +275,16 @@ nav.classList.toggle('active');
 menu.classList.toggle('active');
 }
 </script>
+
+<style>
+.row-abil { background-color: #2cff02; }
+.row-ahmad { background-color: #ff0101; }
+.row-alda { background-color: #ff0202; }
+.row-ega { background-color: #2cff02; }
+.row-rudi { background-color: #ff0202; }
+.row-made { background-color: #ff0202; }
+tbody tr td {
+  padding: 10px;
+}
+</style>
       </section>

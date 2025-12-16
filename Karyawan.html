@@ -127,6 +127,35 @@
   localStorage.removeItem("isLogin");
   window.location.href = "login.html";
 }
+const SESSION_DURATION = 15 * 60 * 1000; // 15 menit
+
+function checkSession() {
+  const isLogin = localStorage.getItem("isLogin");
+  const loginTime = localStorage.getItem("loginTime");
+
+  if (!isLogin || !loginTime) {
+    logout();
+    return;
+  }
+
+  const now = Date.now();
+  if (now - loginTime > SESSION_DURATION) {
+    alert("Sesi login Anda telah berakhir");
+    logout();
+  }
+}
+
+function logout() {
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("loginTime");
+  window.location.href = "login.html";
+}
+
+// cek tiap 10 detik
+setInterval(checkSession, 10000);
+
+// cek saat halaman dibuka
+checkSession();
 </script>
   <!-- MENU BAR HEADER -->
   <div class="navbar" id="navbar">
@@ -176,14 +205,14 @@
             <tr><th>ID</th><th>Nama</th><th>Posisi</th><th>Divisi</th><th>Status</th></tr>
           </thead>
           <tbody>
-            <tr><td>EMP-001</td><td>Ega Mochamad</td><td>Supervisor</td><td>Forwarder</td><td>Aktif</td></tr>
+            <tr><td>EMP-001</td><td>Ega Mochamad</td><td>Supervisor</td><td>Head Manager</td><td>Aktif</td></tr>
             <tr><td>EMP-002</td><td>Muhammad Abil</td><td>Supervisor</td><td>Head Manager</td><td>Aktif</td></tr>
-            <tr><td>EMP-003</td><td>Anugrah Satria Hutomo</td><td>Pelaksana</td><td>ipal Ciptomulyo</td><td>Aktif</td></tr>
-            <tr><td>EMP-004</td><td>Bintang Karima</td><td>Pelaksana</td><td>SDN Pandanwangi 5</td><td>Aktif</td></tr>
-            <tr><td>EMP-005</td><td>Febrian Syahrul</td><td>Pelaksana</td><td>Balai RW pisang candi</td><td>Aktif</td></tr>
-            <tr><td>EMP-006</td><td>Challan Jibran</td><td>Bendahara</td><td>Keuangan</td><td>Aktif</td></tr>
-            <tr><td>EMP-007</td><td>Valentino Setiawan</td><td>Admin</td><td>Administrasi</td><td>Aktif</td></tr>
-            <tr><td>EMP-008</td><td>Fardi Ramadan</td><td>Admin</td><td>Administrasi</td><td>Aktif</td></tr>
+            <tr><td>EMP-003</td><td>Anugrah Satrio Hutomo</td><td>Pelaksana</td><td>Site</td><td>Aktif</td></tr>
+            <tr><td>EMP-004</td><td>Bintang Karima</td><td>Pelaksana</td><td>Site</td><td>Aktif</td></tr>
+            <tr><td>EMP-005</td><td>Febrian Syahrul</td><td>Pelaksana</td><td>Site</td><td>Aktif</td></tr>
+            <tr><td>EMP-006</td><td>Challan Jibran</td><td>Bendahara</td><td>Finance</td><td>Aktif</td></tr>
+            <tr><td>EMP-007</td><td>Valentino Setiawan</td><td>Admin</td><td>Administration</td><td>Aktif</td></tr>
+            <tr><td>EMP-008</td><td>Fardi Ramadhana</td><td>Admin</td><td>Administration</td><td>Aktif</td></tr>
           </tbody>
         </table>
 <script>

@@ -127,6 +127,35 @@
   localStorage.removeItem("isLogin");
   window.location.href = "login.html";
 }
+const SESSION_DURATION = 15 * 60 * 1000; // 15 menit
+
+function checkSession() {
+  const isLogin = localStorage.getItem("isLogin");
+  const loginTime = localStorage.getItem("loginTime");
+
+  if (!isLogin || !loginTime) {
+    logout();
+    return;
+  }
+
+  const now = Date.now();
+  if (now - loginTime > SESSION_DURATION) {
+    alert("Sesi login Anda telah berakhir");
+    logout();
+  }
+}
+
+function logout() {
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("loginTime");
+  window.location.href = "login.html";
+}
+
+// cek tiap 10 detik
+setInterval(checkSession, 10000);
+
+// cek saat halaman dibuka
+checkSession();
 </script>
   <!-- MENU BAR HEADER -->
   <div class="navbar" id="navbar">
@@ -175,10 +204,10 @@
             <tr><th>Id Proyek</th><th>Nama Pekerjaan</th><th>Persentase</th></tr>
           </thead>
           <tbody>
-            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>65%</td><td></td></tr>
-            <tr><td>KNT-002</td><td>SDN Pandanwangi 5</td><td>70%</td><td></td></tr>
-            <tr><td>KNT-003</td><td>Balai RW Pisang Candi</td><td>90%</td><td></td></tr>
-            <tr><td>KNT-004</td><td>SMKN 13 </td><td>No Data</td><td></td></tr>
+            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>100%</td><td></td></tr>
+            <tr><td>KNT-002</td><td>SDN Pandanwangi 5</td><td>100%</td><td></td></tr>
+            <tr><td>KNT-003</td><td>Balai RW Pisang Candi</td><td>100%</td><td></td></tr>
+            <tr><td>KNT-004</td><td>SMKN 13 Malang</td><td>100%</td><td></td></tr>
             <tr><td>PGDN-005</td><td>SMK Muhammadiyah</td><td>100%</td><td></td></tr>
           </tbody>
         </table>
@@ -196,7 +225,7 @@
             <tr><th>ID Proyek</th><th>Nama Proyek</th><th>Pelaksana</th><th>Tenggat kontrak</th></tr>
           </thead>
           <tbody>
-            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>Satria Hugiutomo</td><td>07 Desember 2025</td></tr>
+            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>Anugrah Satrio Hutomo</td><td>07 Desember 2025</td></tr>
             <tr><td>KNT-002</td><td>SDN Pandanwangi 5</td><td>Bintang Karima</td><td>00 desember 2025</td></tr>
             <tr><td>KNT-003</td><td>Balai RW Pisang Candi</td><td>Febrian Syahrul</td><td>00 desember 2025</td></tr>
             <tr><td>KNT-004</td><td>Pos Polisi</td><td>Anton</td><td>00 desember 2025</td></tr>

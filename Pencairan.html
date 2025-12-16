@@ -127,6 +127,35 @@
   localStorage.removeItem("isLogin");
   window.location.href = "login.html";
 }
+const SESSION_DURATION = 15 * 60 * 1000; // 15 menit
+
+function checkSession() {
+  const isLogin = localStorage.getItem("isLogin");
+  const loginTime = localStorage.getItem("loginTime");
+
+  if (!isLogin || !loginTime) {
+    logout();
+    return;
+  }
+
+  const now = Date.now();
+  if (now - loginTime > SESSION_DURATION) {
+    alert("Sesi login Anda telah berakhir");
+    logout();
+  }
+}
+
+function logout() {
+  localStorage.removeItem("isLogin");
+  localStorage.removeItem("loginTime");
+  window.location.href = "login.html";
+}
+
+// cek tiap 10 detik
+setInterval(checkSession, 10000);
+
+// cek saat halaman dibuka
+checkSession();
 </script>
   <!-- MENU BAR HEADER -->
   <div class="navbar" id="navbar">
@@ -176,12 +205,34 @@
             <tr><th>Nama Proyek</th><th>Proses</th></tr>
           </thead>
           <tbody>
-            <tr><td>Aspal Matos</td><td>90% LUNAS</td></tr>
-            <tr><td>Drainase Sumpil</td><td>Pencairan</td>></tr>
-            <tr><td>SMK Muhammadiyah</td><td>Pembayaran kursi lunas</td></tr>
-            <tr><td>Balai RW pisang candi</td><td>No Data</td></tr>
-            <tr><td>Ipal Ciptomulyo</td><td>No Data</td></tr>
-            <tr><td>SDN Pandanwangi 5</td><td>No Data</td></tr>
+            <tr class="row-matos">
+              <td>Aspal Matos</td>
+              <td>90%</td>
+            </tr>
+            <tr class="row-sumpil">
+              <td>Drainase Sumpil</td>
+              <td>Pencairan</td>
+            </tr>
+            <tr class="row-pengadaan">
+              <td>SMK Muhammadiyah</td>
+              <td>Pembayaran kursi lunas</td>
+            </tr>
+            <tr class="row-pengadaan2">
+              <td>SMK Muhammadiyah</td>
+              <td>Pembayaran lemari dan meja</td>
+            </tr>
+            <tr class="row-pisangcandi">
+              <td>Balai RW pisang candi</td>
+              <td>Pencairan</td>
+            </tr>
+            <tr class="row-ipal">
+              <td>Ipal Ciptomulyo</td>
+              <td>Pencairan</td>
+            </tr>
+            <tr class="row-sdn">
+              <td>SDN Pandanwangi 5</td>
+              <td>Pencairan</td>
+            </tr>
           </tbody>
         </table>
         <script>
@@ -192,4 +243,14 @@ nav.classList.toggle('active');
 menu.classList.toggle('active');
 }
 </script>
+
+<style>
+.row-matos { background-color: #2cff02; }
+.row-sumpil { background-color: #ff0101; }
+.row-pengadaan { background-color: #41ff01; }
+.row-pengadaan2 { background-color: #ff0101; }
+.row-pisangcandi { background-color: #ff0101; }
+.row-ipal { background-color: #ff0101; }
+.row-sdn { background-color: #ff0101; }
+</style>
       </section>
