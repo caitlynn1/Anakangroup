@@ -204,11 +204,36 @@ checkSession();
             <tr><th>Id Proyek</th><th>Nama Pekerjaan</th><th>Persentase</th></tr>
           </thead>
           <tbody>
-            <tr><td>KNT-001</td><td>Ipal Ciptomulyo</td><td>100%</td><td></td></tr>
-            <tr><td>KNT-002</td><td>SDN Pandanwangi 5</td><td>100%</td><td></td></tr>
-            <tr><td>KNT-003</td><td>Balai RW Pisang Candi</td><td>100%</td><td></td></tr>
-            <tr><td>KNT-004</td><td>SMKN 13 Malang</td><td>100%</td><td></td></tr>
-            <tr><td>PGDN-005</td><td>SMK Muhammadiyah</td><td>100%</td><td></td></tr>
+            <tr class="row-ipal">
+              <td>KNT-001</td>
+              <td>Ipal Ciptomulyo</td>
+              <td>100%</td>
+              <td></td>
+            </tr>
+            <tr class="row-sdn">
+              <td>KNT-002</td>
+              <td>SDN Pandanwangi 5</td>
+              <td>100%</td>
+              <td></td>
+            </tr>
+            <tr class="row-pisang">
+              <td>KNT-003</td>
+              <td>Balai RW Pisang Candi</td>
+              <td>100%</td>
+              <td></td>
+            </tr>
+            <tr class="row-smkn13">
+              <td>KNT-004</td>
+              <td>SMKN 13 Malang</td>
+              <td>100%</td>
+              <td></td>
+            </tr>
+            <tr class="row-diyah">
+              <td>PGDN-005</td>
+              <td>SMK Muhammadiyah</td>
+              <td>50%</td>
+              <td></td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -241,4 +266,12 @@ nav.classList.toggle('active');
 menu.classList.toggle('active');
 }
 </script>
+
+<style>
+  .row-ipal { background-color: #2cff02; }
+  .row-sdn { background-color: #2cff02; }
+  .row-pisang { background-color: #2cff02; }
+  .row-smkn13 { background-color: #2cff02; }
+  .row-diyah { background-color: #ff8c00; }
+</style>
       </section>
